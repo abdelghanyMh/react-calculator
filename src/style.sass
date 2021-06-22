@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700&display=swap')
+$primary-color: #0B132B
+$secondary-color: #07575B
+$third-color: #66A5AD
+$fourth-color: #C4DFE6
+@mixin font($color:black)
+    color: $color
+    text-align: right
+
+*
+    margin: 0
+    padding: 0
+#root
+    background: $primary-color
+    height: 100vh
+    display: flex
+    align-items: center
+    justify-content: center
+    .calculator
+        border: 2px solid $secondary-color
+        padding: 5px
+        background: $third-color
+        width: 320px
+        position: relative
+        font-size: 1.2rem
+        font-family: 'Big Shoulders Stencil Display', cursive
+#formula-screen
+    @include font($color:#E6DF44)
+    font-family: Share Tech Mono, monospace
+    font-size: 0.9rem
+    font-weight: bold
+    line-height: 32px
+#display-screen
+    @include font($color:white)
+    font-size: 27px
+    line-height: 42px
+
+button
+    position: relative
+    height: 65px
+    width: 80px
+    color: white
+    outline: 1px solid $third-color
+    border: none
+    background: #4d4d4d
+    font-family: Share Tech Mono, monospace
+    font-size: 20px
+    cursor: default
+    &:active
+        transform: scale(0.9)
+.btn-lg
+    width: 160px
+
+#equals
+    position: absolute
+    height: 130px
+    bottom: 5px
+
+#note
+    text-align: center
+    font-family: 'Big Shoulders Stencil Display'
+    margin-top: 15px
+    width: 334px
+    word-break: break-all
+    line-height: 28px
+    font-size: 1.4rem
