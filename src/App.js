@@ -22,6 +22,7 @@ class Calculator extends React.Component {
      * Pressing an operator immediately following = should start a new calculation
      * that operates on the result of the previous evaluation.
      * @param {string} evalutated tell  if = clicked or not 
+     * 
      * @param {string} lastResult  store  the result of the previous evaluation.
      */
     this.state = {
@@ -49,9 +50,14 @@ class Calculator extends React.Component {
     }
     )
   }
+
+  // delete the last number  entered
+  del = () => {
+    // let newShit = str.slice(0, -1);
+    console.log(this.state);
+  }
   handelClick = (e) => {
-    console.log("fuck" + this.state.output);
-    const isOperator = /[x/+]/
+    const isOperator = new RegExp('[+\-/]')
     let { output, formula, evalutated, lastResult, decimal } = this.state
     if (e.currentTarget.value.match(isOperator)) {
       this.state.decimal = false
@@ -92,6 +98,7 @@ class Calculator extends React.Component {
       }
       else if (formula.slice(-1).match(isOperator) && !e.currentTarget.value.match(isOperator)) {
         this.updateState(e.currentTarget.value, formula.concat(e.currentTarget.value));
+        console.log('fuck');
       }
       /**
        * If 2 or more operators are entered consecutively, the operation performed should be the last operator
@@ -131,7 +138,7 @@ class Calculator extends React.Component {
   /**
    * when I hit =, the correct result should be shown in the element with the id of display.
    * eval() handel this functionality
-
+  
    }
    */
   eval = () => {
@@ -152,7 +159,7 @@ class Calculator extends React.Component {
     }
 
     formula = formula.replace(/‑/g, "-").replace('--', '+').replace(/[+|*|/|-]0/g,)/** ?_? */
-    console.log(formula)
+    // console.log(formula)
     let evaluateMe = Math.round(1000000000000 * eval(formula)) / 1000000000000;
 
     this.setState({
@@ -178,132 +185,95 @@ class Calculator extends React.Component {
 
   render() {
     return (
-    <div>
-      <div className="calculator">
-        <Formula formula={this.state.formula} />
-        <Output output={this.state.output} />
-        <Buttons clear={this.clearScreen}
-          handelClick={this.handelClick}
-          eval={this.eval}
-          handleDecimal={this.handleDecimal}
-
-        />
-     
-      </div>
-      <div id="note">
-          this calculator uses the Formula/Expression Logic
-           EXAMPLE: <mark>3 + 5 x 6 - 2 / 4 =</mark><br/>
-           Immediate Execution Logic: 11.5<br/>
-           Formula/Expression Logic: <mark>32.5</mark><br/>
-          
+      <>
+        <div className="calculator">
+          <div className="calculator__screen">
+            <Formula formula={this.state.formula} />
+            <Output output={this.state.output} />
           </div>
-      </div>
+          <Buttons clear={this.clearScreen}
+            handelClick={this.handelClick}
+            del={this.del}
+            eval={this.eval}
+            handleDecimal={this.handleDecimal}
+
+          />
+
+        </div>
+        <div id="note">
+          this calculator uses the Formula/Expression Logic
+          EXAMPLE: <mark>3 + 5 x 6 - 2 / 4 =</mark><br />
+          Immediate Execution Logic: 11.5<br />
+          Formula/Expression Logic: <mark>32.5</mark><br />
+
+        </div>
+      </>
     );
   }
 }
+
 class Buttons extends React.Component {
 
   render() {
     return (
-      <div>
-        <button
-          className="btn-lg"
-          id="clear"
-          onClick={this.props.clear}
-          className="btn-lg"
-          value="AC"
-        >
-          AC{this.props.clear}
-        </button>
-        <button
-          id="divide"
+      <div className="key-container">
+        <button id="seven" className="btn btn-7" onClick={this.props.handelClick} value="7">7</button>
+        <button id="eight" className="btn btn-8" onClick={this.props.handelClick} value="8">8</button>
+        <button id="nine" className="btn btn-9" onClick={this.props.handelClick} value="9">9</button>
+        <button className="btn btn-blue btn-del" onClick={this.props.del} >DEL</button>
+        <button id="four" className="btn btn-4" onClick={this.props.handelClick} value="4">4</button>
+        <button id="five" className="btn btn-5" onClick={this.props.handelClick} value="5">5</button>
+        <button id="six" className="btn btn-6" onClick={this.props.handelClick} value="6">6</button>
+        <button id="add"
           onClick={this.props.handelClick}
-          className="operator"
-          value="/"
-        >
-          /
-        </button>
-        <button
-          id="multiply"
-          onClick={this.props.handelClick}
-          className="operator"
-          value="*"
-        >
-          x
-        </button>
-        <button id="seven" onClick={this.props.handelClick} value="7">
-          7
-        </button>
-        <button id="eight" onClick={this.props.handelClick} value="8">
-          8
-        </button>
-        <button id="nine" onClick={this.props.handelClick} value="9">
-          9
-        </button>
-        <button
-          id="subtract"
-          onClick={this.props.handelClick}
-          className="operator"
-          value="‑"
-        >
-          ‑
-        </button>
-        <button id="four" onClick={this.props.handelClick} value="4">
-          4
-        </button>
-        <button id="five" onClick={this.props.handelClick} value="5">
-          5
-        </button>
-        <button id="six" onClick={this.props.handelClick} value="6">
-          6
-        </button>
-        <button
-          id="add"
-          onClick={this.props.handelClick}
-          className="operator"
+          className="operator btn  btn-add"
           value="+"
-        >
-          +
-        </button>
-        <button id="one" onClick={this.props.handelClick} value="1">
-          1
-        </button>
-        <button id="two" onClick={this.props.handelClick} value="2">
-          2
-        </button>
-        <button id="three" onClick={this.props.handelClick} value="3">
-          3
-        </button>
-        <button
-          className="btn-lg"
+        >+</button>
+        <button id="one" className="btn btn-1" onClick={this.props.handelClick} value="1">1</button>
+        <button id="two" className="btn btn-2" onClick={this.props.handelClick} value="2">2</button>
+        <button id="three" className="btn btn-3" onClick={this.props.handelClick} value="3">3</button>
+        <button id="subtract"
+          onClick={this.props.handelClick}
+          className="operator btn  btn-sub"
+          value="‑">‑</button>
+        <button id="decimal" className="btn btn-dec" onClick={this.props.handleDecimal} value=".">.</button>
+        <button className="btn btn-0 "
           id="zero"
           onClick={this.props.handelClick}
           value="0"
-        >
-          0
-        </button>
-        <button id="decimal" onClick={this.props.handleDecimal} value=".">
-          .
-        </button>
-        <button
-          id="equals"
+        >0</button>
+        <button id="divide"
+          onClick={this.props.handelClick}
+          className="operator btn btn-div"
+          value="/"
+        >/</button>
+        <button id="multiply"
+          onClick={this.props.handelClick}
+          className="operator btn btn-mul"
+          value="*"
+        >x</button>
+        <button className=" btn btn-clr btn-lg"
+          id="clear"
+          onClick={this.props.clear}
+          value="AC">clear{this.props.clear}</button>
+
+        <button id="equals"
           onClick={this.props.eval}
           // style={equalsStyle}
-          value="="
-        >
-          =
-        </button>
+          value="=" className="btn btn-eq btn-lg"
+        >=</button>
       </div>
     );
   }
 }
+
 class Output extends React.Component {
   render() {
     return (
 
-      <div id="display-screen">
+      <div className='calculator__screen-display' >
         {this.props.output}
-      </div>
+      </div >
     );
   }
 }
@@ -311,9 +281,9 @@ class Output extends React.Component {
 class Formula extends React.Component {
   render() {
     return (
-      <div id="formula-screen" >
+      <div className='calculator__screen-formula' >
         {this.props.formula}
-      </div>
+      </div >
     );
   }
 }
