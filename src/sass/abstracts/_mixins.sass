@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+@mixin border-radious
+  border-radius: 9px
+
+
+// MEDIA QUERY MANAGER
+//  [0 - 375px ]: mobile-sml
+//  1440px + :    is where our design apply
+//     $breakpoint arguement choices: 
+//         - mobile-sml
+//         1em = 16px
+@mixin respond($breakpoint)
+  @if $breakpoint == mobile-sml
+    @media only screen and ( max-width: 23.4375em  )// 375px/16
+      @content

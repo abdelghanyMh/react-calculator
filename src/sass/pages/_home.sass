@@ -1,0 +1,48 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts'
+
+.calculator__screen
+    margin-bottom: 2rem
+    padding: 1.5rem 1rem
+    background: abstracts.$light-grey-2
+    @include  abstracts.border-radious
+    & > *
+        text-align: right
+        color: abstracts.$dark-grey
+    &-formula
+        font: bold 1rem/32px Share Tech Mono, monospace
+        min-height: 2rem
+
+    &-display
+        font-size: 3rem
+        line-height: 2.625rem
+
+.key-container
+    display: grid
+    grid-template-columns: repeat(4,[key-start]1fr [key-end])
+    justify-items: center
+    gap: 1rem
+
+    padding: 1.5rem 1rem
+    background: abstracts.$grayish-red
+    @include  abstracts.border-radious
+
+.btn-7, .btn-4,.btn-1, .btn-dec
+    grid-column: key-start 1 / key-end 1
+
+.btn-8, .btn-5,.btn-2, .btn-0
+    grid-column: key-start 2 / key-end 2
+
+.btn-9, .btn-6,.btn-3, .btn-div
+    grid-column: key-start 3 / key-end 3
+.btn-del, .btn-add,.btn-sub, .btn-mul
+    grid-column: key-start 4 / key-end 4
+    justify-self: end
+
+.btn-clr
+    grid-column: key-start 1 / key-end 2
+
+.btn-eq
+    grid-column: key-start 3 / key-end 4

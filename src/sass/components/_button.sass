@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+@use '../abstracts'
+
+@mixin btn-shadow($color:abstracts.$dark-grayish-orange)
+    box-shadow: 0px 3px 0px $color
+
+.btn
+    width: 85px
+    height: 48px
+    color: abstracts.$dark-grey
+    border: none
+    background: abstracts.$light-grayellow
+    font: bold 1.5rem Share Tech Mono, monospace
+    text-transform: uppercase
+
+    @include  abstracts.border-radious
+    @include btn-shadow
+    cursor: default
+    transition: all 100ms cubic-bezier(.39,.58,.57,1)
+    @include abstracts.respond(mobile-sml)
+        width: 60px
+        height: 60px
+
+    &:active
+        transform: scale(0.9)
+        box-shadow: none
+    &-del,&-clr
+        background: abstracts.$dark-cyan-1
+        @include btn-shadow($color:abstracts.$dark-cyan-2)
+    &-eq
+        background: abstracts.$regular-orange-1
+        box-shadow: abstracts.$dark-orange-1
+        @include btn-shadow($color:abstracts.$dark-orange-1)
+
+    &-eq,&-clr,&-del
+        color: abstracts.$white
+    &-lg
+        width: 80%
