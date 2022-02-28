@@ -1,6 +1,5 @@
 {
   "homepage": "http://abdelghanyMh.github.io/react-calculator",
-
   "name": "react-calculator",
   "version": "0.1.0",
   "private": true,
@@ -14,12 +13,17 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "watch:sass": "sass --watch src/sass/main.sass  src/index.css",
+    "compile:sass": "sass --no-source-map src/sass/main.sass  src/index.comp.css",
+    "prefix:css": "postcss --use autoprefixer  -b 'last 10 versions' src/index.comp.css -o src/index.prefix.css",
+    "compress:css": "sass --style compressed src/index.prefix.css src/index.css ",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css ",
+    "start": "react-scripts start  npm-run-all  watch:sass"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +45,10 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",
-    "node-sass": "^6.0.0"
+    "autoprefixer": "^10.4.2",
+    "concat": "^1.0.3",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^9.1.0",
+    "sass": "^1.49.4"
   }
 }
