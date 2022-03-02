@@ -187,6 +187,7 @@ class Calculator extends React.Component {
     return (
       <>
         <div className="calculator">
+          <Theme />
           <div className="calculator__screen">
             <Formula formula={this.state.formula} />
             <Output output={this.state.output} />
@@ -286,6 +287,38 @@ class Formula extends React.Component {
       </div >
     );
   }
+}
+
+// theme switcher classs
+class Theme extends React.Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     output: "0"
+  //   }
+  // }
+  render() {
+    return (
+      <div className="themes-container" >
+        <p className="primary">calc</p>
+        <div className="themes-toggle">
+          <p className="secondary">theme</p>
+          <div className="toggle">
+            <div className="toggle-numbers">
+              <span className="toggle-number">1</span>
+              <span className="toggle-number">2</span>
+              <span className="toggle-number">3</span></div>
+            <div className="toggle-btns">
+              <button className="btn-toggle" type="button"></button>
+              <button className="btn-toggle" type="button"></button>
+              <button className="btn-toggle" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
 }
 
 

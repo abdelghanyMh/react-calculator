@@ -3,16 +3,38 @@
 // -----------------------------------------------------------------------------
 @use '../abstracts'
 
+.themes-container
+    display: flex
+    justify-content: space-between
+    margin-bottom: 2rem
+
+.themes-toggle
+    display: flex
+    justify-content: space-between
+    flex: 0.2 1 3rem
+
+.toggle
+    flex: .5 1 auto
+    &-btns
+        background: var(--toggle-keypad-bg)
+        border-radius: 14px
+    &-number:not(:last-child)
+        margin-right: 0.8rem
+    &-number:first-child
+        margin-left: .5rem
+    &-number
+        font-size: 1rem
+
 .calculator__screen
     margin-bottom: 2rem
     padding: 1.5rem 1rem
-    background: abstracts.$light-grey-2
+    background: var(--screen-bg)
+
     @include  abstracts.border-radious
     & > *
         text-align: right
-        color: abstracts.$dark-grey
     &-formula
-        font: bold 1rem/32px Share Tech Mono, monospace
+        font: bold 1rem/2rem Share Tech Mono, monospace
         min-height: 2rem
 
     &-display
@@ -26,7 +48,7 @@
     gap: 1rem
 
     padding: 1.5rem 1rem
-    background: abstracts.$grayish-red
+    background: var(--toggle-keypad-bg)
     @include  abstracts.border-radious
 
 .btn-7, .btn-4,.btn-1, .btn-dec

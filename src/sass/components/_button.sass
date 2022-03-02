@@ -3,15 +3,15 @@
 // -----------------------------------------------------------------------------
 @use '../abstracts'
 
-@mixin btn-shadow($color:abstracts.$dark-grayish-orange)
+@mixin btn-shadow($color:var(--key-shadow))
     box-shadow: 0px 3px 0px $color
 
 .btn
-    width: 85px
-    height: 48px
-    color: abstracts.$dark-grey
+    width: 5.3125rem
+    height: 3rem
+    color: var(--text-color)
     border: none
-    background: abstracts.$light-grayellow
+    background: var(--key-bg)
     font: bold 1.5rem Share Tech Mono, monospace
     text-transform: uppercase
 
@@ -19,22 +19,37 @@
     @include btn-shadow
     cursor: default
     transition: all 100ms cubic-bezier(.39,.58,.57,1)
+    @include abstracts.respond(mobile-l)
+        width: 4rem
+        height: 3rem
     @include abstracts.respond(mobile-sml)
-        width: 60px
-        height: 60px
+        width: 3.4rem
 
     &:active
         transform: scale(0.9)
         box-shadow: none
     &-del,&-clr
-        background: abstracts.$dark-cyan-1
-        @include btn-shadow($color:abstracts.$dark-cyan-2)
+        background: var(--key-bg-del-clear)
+        @include btn-shadow($color:var(--key-shadow-del-clear))
+    &-eq,&-toggle
+        background: var(--key-bg-eq)
     &-eq
-        background: abstracts.$regular-orange-1
-        box-shadow: abstracts.$dark-orange-1
-        @include btn-shadow($color:abstracts.$dark-orange-1)
+        @include btn-shadow($color:var(--key-shadow-eq))
 
     &-eq,&-clr,&-del
         color: abstracts.$white
     &-lg
         width: 80%
+
+    // theme toggle btn style 
+    &-toggle:not(:last-child)
+        margin-right: 0.5rem
+    &-toggle:first-child
+        margin-left: .3rem
+    &-toggle
+        outline: none
+        border: none
+        border-radius: 50%
+        width: 11px
+        height: 11px
+        transform: translate(14%, -51%)

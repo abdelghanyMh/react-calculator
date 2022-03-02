@@ -2,12 +2,15 @@
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
 @use '../abstracts'
+@use '../themes'
 /**
  * Set up a decent box model on the root element
  */
 html
   box-sizing: border-box
-  background-color: abstracts.$light-grey-1
+
+  // @include abstracts.respond(mobile-l)
+  //   font-size: 80%
 
 /**
  * Make all elements from the DOM inherit from the parent box-sizing
@@ -27,19 +30,20 @@ html
   display: flex
   align-items: center
   justify-content: center
-  @include abstracts.respond(mobile-sml)
-    align-items: start
-    margin-top: 2rem
+  background: var(--main-bg)
+  // @media (prefers-color-scheme: dark)
+  //   @extend .theme-1
 
 .calculator
-  // border: 2px solid abstracts.$secondary-color
-  padding: 5px
-  background: abstracts.$light-grey-1
-  width: 35%
+  padding: 0.3rem
+  background: var(--main-bg)
+
   position: relative
   font-size: 1.2rem
   font-family: 'Big Shoulders Stencil Display', cursive
-  @media screen and ( max-width:800px) // delete me !
-    width: 75%
-  @include abstracts.respond(mobile-sml)
+
+  @include abstracts.respond(mobile-l)
     width: 90%
+
+  @include abstracts.respond(mobile-sml)
+    width: 100%

@@ -3,11 +3,11 @@
 // -----------------------------------------------------------------------------
 
 @mixin border-radious
-  border-radius: 9px
-
+  border-radius: .5rem
 
 // MEDIA QUERY MANAGER
 //  [0 - 375px ]: mobile-sml
+//  [1440px-1226px]: laptop-md
 //  1440px + :    is where our design apply
 //     $breakpoint arguement choices: 
 //         - mobile-sml
@@ -15,4 +15,10 @@
 @mixin respond($breakpoint)
   @if $breakpoint == mobile-sml
     @media only screen and ( max-width: 23.4375em  )// 375px/16
+      @content
+  @if $breakpoint == mobile-l
+    @media only screen and ( max-width: 31.25em  )// 375px/16
+      @content
+  @if $breakpoint == laptop-md
+    @media only screen and ( max-width: 76.625em  )// 1226px/16
       @content
