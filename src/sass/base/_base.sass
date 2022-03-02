@@ -23,27 +23,34 @@ html
 *::after
   margin: 0
   padding: 0
-  box-sizing: inherit
+  box-sizing: border-box
 
 #root
   height: 100vh
-  display: flex
-  align-items: center
-  justify-content: center
   background: var(--main-bg)
   // @media (prefers-color-scheme: dark)
   //   @extend .theme-1
 
 .calculator
-  padding: 0.3rem
+
+  width: 33%
+  height: 100%
+  margin: auto
+  padding-top: 10vmin
   background: var(--main-bg)
 
   position: relative
   font-size: 1.2rem
   font-family: 'Big Shoulders Stencil Display', cursive
 
+  @include abstracts.respond(laptop-md)
+    width: max-content
+
   @include abstracts.respond(mobile-l)
     width: 90%
+    padding: 1rem
+    display: flex
+    flex-direction: column
 
   @include abstracts.respond(mobile-sml)
     width: 100%

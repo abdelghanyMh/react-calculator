@@ -1,10 +1,20 @@
+@use '../abstracts'
+
 .primary,.secondary
     align-self: end
 .primary
     font-size: 2rem
+    @include abstracts.respond(mobile-l)
+        font-size: 2.5rem
 
 .secondary
     font-size: 1rem
     text-transform: uppercase
     letter-spacing: .1rem
     margin-bottom: 4px
+
+    @include abstracts.respond(mobile-l)
+
+        font-size: 1.3rem
+        text-transform: capitalize
+        margin: 0 1rem 3px 0

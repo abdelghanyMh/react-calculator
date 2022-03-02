@@ -18,6 +18,13 @@
     &-btns
         background: var(--toggle-keypad-bg)
         border-radius: 14px
+        padding-left: 3px
+        padding-right: 3px
+        width: max-content
+        @include abstracts.respond(mobile-l)
+            border-radius: 20px
+            padding: 5px
+
     &-number:not(:last-child)
         margin-right: 0.8rem
     &-number:first-child
@@ -51,6 +58,9 @@
     background: var(--toggle-keypad-bg)
     @include  abstracts.border-radious
 
+    @include abstracts.respond(mobile-l)
+        min-height: 60%
+
 .btn-7, .btn-4,.btn-1, .btn-dec
     grid-column: key-start 1 / key-end 1
 
@@ -59,6 +69,7 @@
 
 .btn-9, .btn-6,.btn-3, .btn-div
     grid-column: key-start 3 / key-end 3
+
 .btn-del, .btn-add,.btn-sub, .btn-mul
     grid-column: key-start 4 / key-end 4
     justify-self: end

@@ -21,9 +21,9 @@
     transition: all 100ms cubic-bezier(.39,.58,.57,1)
     @include abstracts.respond(mobile-l)
         width: 4rem
-        height: 3rem
+        height: 5rem
     @include abstracts.respond(mobile-sml)
-        width: 3.4rem
+        width: 3rem
 
     &:active
         transform: scale(0.9)
@@ -31,8 +31,10 @@
     &-del,&-clr
         background: var(--key-bg-del-clear)
         @include btn-shadow($color:var(--key-shadow-del-clear))
-    &-eq,&-toggle
+    &-eq,&-toggle.active
         background: var(--key-bg-eq)
+        border: 1px solid transparent !important
+
     &-eq
         @include btn-shadow($color:var(--key-shadow-eq))
 
@@ -42,14 +44,23 @@
         width: 80%
 
     // theme toggle btn style 
-    &-toggle:not(:last-child)
-        margin-right: 0.5rem
-    &-toggle:first-child
-        margin-left: .3rem
+    // &-toggle:not(:last-child)
+    //     margin-right: 0.5rem
+    // &-toggle:first-child
+    //     margin-left: .3rem
     &-toggle
         outline: none
         border: none
         border-radius: 50%
-        width: 11px
-        height: 11px
-        transform: translate(14%, -51%)
+        width: 1rem
+        height: 1rem
+        display: inline-flex
+        border: 1px solid abstracts.$toggle-border-clr
+        background: transparent
+
+        &:not(:last-child)
+            margin-right: 3px
+
+        @include abstracts.respond(mobile-l)
+            width: 1.4rem
+            height: 1.4rem
