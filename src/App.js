@@ -21,8 +21,8 @@ class Calculator extends React.Component {
      *
      * Pressing an operator immediately following = should start a new calculation
      * that operates on the result of the previous evaluation.
-     * @param {string} evalutated tell  if = clicked or not 
-     * 
+     * @param {string} evalutated tell  if = clicked or not
+     *
      * @param {string} lastResult  store  the result of the previous evaluation.
      */
     this.state = {
@@ -138,7 +138,7 @@ class Calculator extends React.Component {
   /**
    * when I hit =, the correct result should be shown in the element with the id of display.
    * eval() handel this functionality
-  
+
    }
    */
   eval = () => {
@@ -291,12 +291,60 @@ class Formula extends React.Component {
 
 // theme switcher classs
 class Theme extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     output: "0"
-  //   }
-  // }
+  constructor(props) {
+    super(props)
+    /**
+     * @param {string} theme  store  the  previous theme.
+     */
+    this.state = {
+      theme: 'theme-1'
+    }
+
+
+  }
+
+  setTheme = (theme) => {
+
+    const targetClasses = document.getElementById('root').classList
+    const previousTheme = this.state.theme
+    targetClasses.replace(previousTheme, theme)
+    this.setState({ theme })
+
+
+
+    // toggle active class to the the theme toggle theme
+
+    // select All the toggle btns
+
+    // get the theme number form the theme parametre (get the last character of a string )
+    const currenThemeNumber = theme.slice(-1)
+    const previousThemeNumber = previousTheme.slice(-1)
+
+    // add the 'active' class if the current button is corresponding to the current theme
+    // for example
+    // theme = 'them-1' the 'active' will be added to the toggle button  which has the class 'btn-toggle-1'
+    document.querySelector(`.btn-toggle-${currenThemeNumber}`).classList.toggle('active')
+
+    // remove the 'active' class if the current button is corresponding to the previous theme
+    document.querySelector(`.btn-toggle-${previousThemeNumber}`).classList.toggle('active')
+
+
+
+    // dumb version
+    // toggleBtns.forEach(btn => {
+    //   if (btn.classList.contains(`btn-toggle-${currenThemeNumber}`)) {
+    //     // add the 'active' class if the current button is corresponding to the current theme
+    //     // for example
+    //     // theme = 'them-1' the 'active' will be added to the toggle button  which has the class 'btn-toggle-1'
+    //     btn.classList.add('active')
+    //   }
+    //   else if (btn.classList.contains('active')) {
+    //     // remove the 'active' class if the current button is corresponding to the previous theme
+    //     btn.classList.remove('active')
+    //   }
+    // });
+
+  }
   render() {
     return (
       <div className="themes-container" >
@@ -309,9 +357,9 @@ class Theme extends React.Component {
               <span className="toggle-number">2</span>
               <span className="toggle-number">3</span></div>
             <div className="toggle-btns">
-              <button className="btn-toggle" type="button"></button>
-              <button className="btn-toggle" type="button"></button>
-              <button className="btn-toggle" type="button"></button>
+              <button className="btn-toggle btn-toggle-1 active" type="button" onClick={() => this.setTheme('theme-1')}></button>
+              <button className="btn-toggle btn-toggle-2" type="button" onClick={() => this.setTheme('theme-2')}></button>
+              <button className="btn-toggle btn-toggle-3" type="button" onClick={() => this.setTheme('theme-3')}></button>
             </div>
           </div>
         </div>
