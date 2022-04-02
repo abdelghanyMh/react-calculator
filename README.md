@@ -10,8 +10,7 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 
 ## ✨ Demo
 
-![Mobile Layout]()
-![TAblet Layout]()
+![demo](calculator_preview.gif)
 
 ## 🚀 Usage
  > Clone the Repository  
